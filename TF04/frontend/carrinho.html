@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - E-Commerce HA</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header><nav><a href="/">Home</a> | <a href="/produtos.html">Produtos</a></nav></header>
+    <main>
+        <h2>Seu Carrinho</h2>
+        <div id="cart-items">Carrinho vazio. <a href="/produtos.html">Adicionar produtos</a></div>
+        <p><strong>Via Load Balancer Nginx</strong></p>
+    </main>
+    <script>
+        fetch('/api/cart').then(r=>r.json()).then(data=> {
+            document.getElementById('cart-items').innerHTML = data.items.length ? 
+                data.items.map(i=>`<div>${i.name} - R$${i.price}</div>`).join('') + `<p>Total: R$${data.total}</p>` :
+                'Carrinho vazio.';
+        });
+    </script>
+</body>
+</html>
+

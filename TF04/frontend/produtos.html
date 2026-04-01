@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - E-Commerce HA</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header><nav><a href="/">Home</a></nav></header>
+    <main>
+        <h2>Lista de Produtos</h2>
+        <div id="products"></div>
+    </main>
+    <script>
+        fetch('/api/products').then(r=>r.json()).then(p=> {
+            document.getElementById('products').innerHTML = p.map(prod=>`<div class="product-card">${prod.name} - R$${prod.price}</div>`).join('');
+        });
+    </script>
+</body>
+</html>
+

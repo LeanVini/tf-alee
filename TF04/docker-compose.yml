@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - frontend
+      - backend1
+      - backend2
+      - backend3
+      - admin
+    networks:
+      - ecommerce-net
+    command: nginx -g 'daemon off;'
+
+  frontend:
+    build: ./frontend
+    networks:
+      - ecommerce-net
+
+  backend1:
+    build: ./backend
+    environment:
+      - INSTANCE_ID=1
+      - LOAD_FACTOR=1.0
+    networks:
+      - ecommerce-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  backend2:
+    build: ./backend
+    environment:
+      - INSTANCE_ID=2
+      - LOAD_FACTOR=1.2
+    networks:
+      - ecommerce-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  backend3:
+    build: ./backend
+    environment:
+      - INSTANCE_ID=3
+      - LOAD_FACTOR=0.8
+    networks:
+      - ecommerce-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  admin:
+    build: ./admin
+    networks:
+      - ecommerce-net
+
+networks:
+  ecommerce-net:
+    driver: bridge
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Load Balancer</title>
+    <style>
+        body { font-family: Arial; background: #1a1a1a; color: #fff; padding: 2rem; }
+        .card { background: #333; padding: 1.5rem; margin: 1rem 0; border-radius: 8px; }
+        button { background: #007bff; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #555; }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard - E-Commerce HA</h1>
+    <div class="card">
+        <h2>Load Balancer Status</h2>
+        <button onclick="loadMetrics()">Atualizar Métricas</button>
+        <div id="metrics"></div>
+    </div>
+    <div class="card">
+        <h2>Backend Instances</h2>
+        <button onclick="checkHealth()">Verificar Health</button>
+        <table id="health-table">
+            <tr><th>Instance</th><th>Status</th><th>Last Check</th></tr>
+        </table>
+    </div>
+    <script>
+        async function loadMetrics() {
+            const res = await fetch('/api/info');
+            const data = await res.json();
+            document.getElementById('metrics').innerHTML = `
+                <p>Instance: ${data.instance_id}</p>
+                <p>Load Factor: ${data.load_factor}</p>
+                <p>Proxy via Nginx LB</p>
+            `;
+        }
+        async function checkHealth() {
+            const checks = await Promise.all([
+                fetch('/api/health').then(r=>r.json()),
+                fetch('http://backend2:5000/health').catch(()=> ({status:'down'})),
+                fetch('http://backend3:5000/health').catch(()=> ({status:'down'}))
+            ]);
+            const table = document.getElementById('health-table');
+            table.innerHTML = '<tr><th>Instance</th><th>Status</th><th>Last Check</th></tr>';
+            checks.forEach((check, i) => {
+                const row = table.insertRow();
+                row.innerHTML = `<td>backend${i+1}</td><td>${check.status}</td><td>${new Date().toLocaleTimeString()}</td>`;
+            });
+        }
+        loadMetrics();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,7 @@
+/* Estilos adicionais para admin */
+.card { box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+h2 { color: #007bff; margin-bottom: 1rem; }
+button:hover { background: #0056b3; }
+tr.healthy { color: #28a745; }
+tr.down { color: #dc3545; }
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Avançado</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>E-Commerce HA</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/produtos.html">Produtos</a></li>
+                <li><a href="/carrinho.html">Carrinho</a></li>
+                <li><a href="/admin/">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h2>Loja com Alta Disponibilidade</h2>
+            <p>Load Balancing com Nginx - 3 instâncias backend</p>
+            <button onclick="loadProducts()">Ver Produtos</button>
+        </section>
+        <div id="products-list"></div>
+    </main>
+    <script>
+        async function loadProducts() {
+            const res = await fetch('/api/products');
+            const products = await res.json();
+            document.getElementById('products-list').innerHTML = products.map(p => 
+                `<div class="product"><h3>${p.name}</h3><p>R$ ${p.price}</p></div>`
+            ).join('');
+        }
+    </script>
+</body>
+</html>
+

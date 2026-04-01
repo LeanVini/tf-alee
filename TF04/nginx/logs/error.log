@@ -1,0 +1,16 @@
+2026/04/01 21:48:51 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/conf.d/load-balancer.conf:24
+2026/04/01 21:48:51 [emerg] 1#1: SSL_CTX_set_cipher_list("ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512") failed (SSL: error:0A0000B9:SSL routines::no cipher match)
+2026/04/01 21:52:05 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/conf.d/load-balancer.conf:24
+2026/04/01 21:52:05 [emerg] 1#1: SSL_CTX_set_cipher_list("ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512") failed (SSL: error:0A0000B9:SSL routines::no cipher match)
+2026/04/01 22:01:09 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/conf.d/load-balancer.conf:24
+2026/04/01 22:01:09 [emerg] 1#1: SSL_CTX_set_cipher_list("ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512") failed (SSL: error:0A0000B9:SSL routines::no cipher match)
+2026/04/01 22:01:14 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/conf.d/load-balancer.conf:24
+2026/04/01 22:01:14 [emerg] 1#1: SSL_CTX_set_cipher_list("ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512") failed (SSL: error:0A0000B9:SSL routines::no cipher match)
+2026/04/01 22:01:18 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/conf.d/load-balancer.conf:24
+2026/04/01 22:01:18 [emerg] 1#1: SSL_CTX_set_cipher_list("ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512") failed (SSL: error:0A0000B9:SSL routines::no cipher match)
+2026/04/01 22:01:20 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/conf.d/load-balancer.conf:24
+2026/04/01 22:01:20 [emerg] 1#1: SSL_CTX_set_cipher_list("ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512") failed (SSL: error:0A0000B9:SSL routines::no cipher match)
+2026/04/01 22:02:38 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/conf.d/load-balancer.conf:24
+2026/04/01 22:02:38 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2026/04/01 22:02:46 [error] 31#31: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2026/04/01 22:03:09 [error] 35#35: *3 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
